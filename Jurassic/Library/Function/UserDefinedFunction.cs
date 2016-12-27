@@ -73,7 +73,7 @@ namespace Jurassic.Library
         internal UserDefinedFunction(ObjectInstance prototype, string name, IList<string> argumentNames, Scope parentScope, string bodyText, FunctionDelegate body, bool strictMode)
             : base(prototype)
         {
-            this.ArgumentsText = string.Join(", ", argumentNames);
+            this.ArgumentsText = string.Join(", ", argumentNames.ToArray());
             this.ArgumentNames = argumentNames;
             this.BodyText = bodyText;
             this.generatedMethod = new GeneratedMethod(body, null);
@@ -97,7 +97,7 @@ namespace Jurassic.Library
         public UserDefinedFunction(ObjectInstance prototype, string name, IList<string> argumentNames, Scope parentScope, string bodyText, GeneratedMethod generatedMethod, bool strictMode)
             : base(prototype)
         {
-            this.ArgumentsText = string.Join(", ", argumentNames);
+            this.ArgumentsText = string.Join(", ", argumentNames.ToArray());
             this.ArgumentNames = argumentNames;
             this.BodyText = bodyText;
             this.generatedMethod = generatedMethod;
