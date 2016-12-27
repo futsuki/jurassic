@@ -33,6 +33,9 @@ namespace Jurassic.Compiler
             const int disqualification = 65536;
             for (int i = 0; i < methods.Length; i++)
             {
+                demeritPoints[i] = 0;
+                if (methods[i].HasParamArray)
+                    demeritPoints[i] += 1;
                 foreach (var argument in methods[i].GetArguments(arguments.Length))
                 {
                     // Get the input parameter.
