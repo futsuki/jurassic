@@ -172,11 +172,14 @@ namespace Jurassic.Library
                 {
                     case MemberTypes.Method:
                         MethodInfo method = (MethodInfo)member;
-                        List<MethodBase> methodGroup;
-                        if (methodGroups.TryGetValue(method.Name, out methodGroup) == true)
-                            methodGroup.Add(method);
-                        else
-                            methodGroups.Add(method.Name, new List<MethodBase>() { method });
+                        if (!method.IsGenericMethod)
+                        {
+                            List<MethodBase> methodGroup;
+                            if (methodGroups.TryGetValue(method.Name, out methodGroup) == true)
+                                methodGroup.Add(method);
+                            else
+                                methodGroups.Add(method.Name, new List<MethodBase>() { method });
+                        }
                         break;
 
                     case MemberTypes.Property:
